@@ -164,9 +164,11 @@
       opacity: 0;
       transition: all 1s;
     }</style><script>//var myAudio = mAudio.default;
-    var audio
+    var audio;
+    var play_time = 1;
     // MP3文件播放方法
-    function playMp3(f, en, cb) {
+    function playMp3(f, en, cb, just_one) {
+      var origin_f = f;
       f = f.split("/");
       if (f.length > 1) {
         f = f[f.length - 1];
@@ -177,11 +179,11 @@
 
       audio = document.getElementById("bgMusic");
       audio.onended = function () {
-        cb && cb();
+        playAgin(origin_f, en, cb, just_one);
       }
       audio.onerror = function () {
-        window.message("可能文件不存在");
-        cb && cb();
+        window.message("文件不存在");
+        playAgin(origin_f, en, cb, just_one);
       }
       audio.src = file;
       //播放(继续播放)
@@ -203,4 +205,13 @@
       });
       cb && audio.on("end", cb);
       audio.play(); */
-    }</script><link href="/css/app.716f5621.css" rel="preload" as="style"><link href="/js/app.fd789624.js" rel="preload" as="script"><link href="/js/chunk-vendors.d08343ce.js" rel="preload" as="script"><link href="/css/app.716f5621.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but words for myself doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><audio id="bgMusic"></audio><div id="app"></div><script src="/js/chunk-vendors.d08343ce.js"></script><script src="/js/app.fd789624.js"></script></body></html>
+    }
+    function playAgin(f, en, cb, just_one) {
+      if (!just_one && play_time == 1) {
+        play_time = play_time + 1;
+        playMp3(f, !en, cb, just_one)
+      } else {
+        play_time = 1;
+        cb && cb();
+      }
+    }</script><link href="/css/app.d6ab5829.css" rel="preload" as="style"><link href="/js/app.d8bb3919.js" rel="preload" as="script"><link href="/js/chunk-vendors.d08343ce.js" rel="preload" as="script"><link href="/css/app.d6ab5829.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but words for myself doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><audio id="bgMusic"></audio><div id="app"></div><script src="/js/chunk-vendors.d08343ce.js"></script><script src="/js/app.d8bb3919.js"></script></body></html>

@@ -167,7 +167,7 @@
     var audio;
     var play_time = 1;
     // MP3文件播放方法
-    function playMp3(f, en, cb, just_one) {
+    function playMp3(f, en, cb, just_one, loop) {
       var origin_f = f;
       f = f.split("/");
       if (f.length > 1) {
@@ -182,8 +182,10 @@
         playAgin(origin_f, en, cb, just_one);
       }
       audio.onerror = function () {
-        // window.message("文件不存在");
-        playAgin(origin_f, en, cb, just_one);
+        if (loop) {
+          window.message("文件不存在");
+        }
+        !loop && playAgin(origin_f, en, cb, just_one);
       }
       audio.src = file;
       //播放(继续播放)
@@ -214,4 +216,4 @@
         play_time = 1;
         cb && cb();
       }
-    }</script><link href="/css/app.9e8a44c1.css" rel="preload" as="style"><link href="/js/app.f27da94f.js" rel="preload" as="script"><link href="/js/chunk-vendors.d08343ce.js" rel="preload" as="script"><link href="/css/app.9e8a44c1.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but words for myself doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><audio id="bgMusic"></audio><div id="app"></div><script src="/js/chunk-vendors.d08343ce.js"></script><script src="/js/app.f27da94f.js"></script></body></html>
+    }</script><link href="/css/app.9e8a44c1.css" rel="preload" as="style"><link href="/js/app.521dc971.js" rel="preload" as="script"><link href="/js/chunk-vendors.d08343ce.js" rel="preload" as="script"><link href="/css/app.9e8a44c1.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but words for myself doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><audio id="bgMusic"></audio><div id="app"></div><script src="/js/chunk-vendors.d08343ce.js"></script><script src="/js/app.521dc971.js"></script></body></html>
